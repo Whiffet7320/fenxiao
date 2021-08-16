@@ -46,33 +46,29 @@ axios.defaults.adapter = function(config) { //自己定义个适配器，用来�
 }
 
 myPost.interceptors.request.use(config => {
-	// if (sessionStorage.getItem("token")) {
-	// config.headers.token = sessionStorage.token;
-	// config.data = {
-	//     pageNum: 1,
-	//     pageSize: 1,
-	// };
-	// config.headers = {
-	//     // 'token': sessionStorage.token,
-	//     'Access-Control-Allow-Origin': '*',
-	//     "access-control-allow-credentials": "true"
-	// }
-	// }
-	// console.log(config)
+	if (uni.getStorageSync('token')) {
+		config.headers = {
+			'token':  uni.getStorageSync('token'),
+			'Access-Control-Allow-Origin': '*',
+			"access-control-allow-credentials": "true"
+		}
+		// config.headers.token = uni.getStorageSync('token');
+	}
+	console.log(config)
 	return config;
 }, error => {
 	console.log(error);
 	return Promise.reject();
 })
 myGet.interceptors.request.use(config => {
-	// if (sessionStorage.getItem("token")) {
-	// config.headers = {
-	// 	// 'token': sessionStorage.token,
-	// 	'Access-Control-Allow-Origin': '*',
-	// 	"access-control-allow-credentials": "true"
-	// }
-	// config.headers.token = sessionStorage.token;
-	// }
+	if (uni.getStorageSync('token')) {
+		config.headers = {
+			// 'token': sessionStorage.token,
+			'Access-Control-Allow-Origin': '*',
+			"access-control-allow-credentials": "true"
+		}
+		config.headers.token = uni.getStorageSync('token');
+	}
 	return config;
 }, error => {
 	console.log(error);
@@ -176,424 +172,266 @@ export default {
 			params: {
 				...obj
 			},
-			// 要在这里写 headers,从sessionStorage中拿,并给headers设置token
-			// headers: {
-			//     'token': sessionStorage.getItem("token")
-			// },
 		})
 	},
-	wx_login(code, rawData, iv, signature, encryptedData) {
+	userInfo(){
 		return myPost({
-			url: urls.wx_login,
-			data: {
-				code,
-				rawData,
-				iv,
-				signature,
-				encryptedData
+			url: urls.userInfo,
+		})
+	},
+	addressIndex(){
+		return myPost({
+			url: urls.addressIndex,
+		})
+	},
+	addressAdd(obj){
+		return myPost({
+			url: urls.addressAdd,
+			params: {
+				...obj
 			},
 		})
 	},
-	wx_userinfo(openid) {
+	addressEdit(obj){
 		return myPost({
-			url: urls.wx_userinfo,
-			data: {
-				openid
+			url: urls.addressEdit,
+			params: {
+				...obj
 			},
 		})
 	},
-	wx_index() {
+	indexBanner(){
 		return myPost({
-			url: urls.wx_index,
+			url: urls.indexBanner,
 		})
 	},
-	wx_goodsview(id,openid) {
+	indexProduct_list(obj){
 		return myPost({
-			url: urls.wx_goodsview,
-			data: {
-				id,
-				openid,
+			url: urls.indexProduct_list,
+			params: {
+				...obj
 			},
 		})
 	},
-	wx_goodslist(obj) {
+	indexProduct_detail(product_id){
 		return myPost({
-			url: urls.wx_goodslist,
+			url: urls.indexProduct_detail,
+			params: {
+				product_id
+			},
+		})
+	},
+	indexCommit_list(obj){
+		return myPost({
+			url: urls.indexCommit_list,
+			params: {
+				...obj
+			},
+		})
+	},
+	cartAdd2cart(obj){
+		return myPost({
+			url: urls.cartAdd2cart,
+			params: {
+				...obj
+			},
+		})
+	},
+	cartIndex(){
+		return myPost({
+			url: urls.cartIndex,
+		})
+	},
+	cartChange_cart_num(obj){
+		return myPost({
+			url: urls.cartChange_cart_num,
+			params: {
+				...obj
+			},
+		})
+	},
+	del_cart_product(cart_id){
+		return myPost({
+			url: urls.del_cart_product,
+			params: {
+				cart_id
+			},
+		})
+	},
+	orderPost_order(obj){
+		return myPost({
+			url: urls.orderPost_order,
+			params: {
+				...obj
+			},
+		})
+	},
+	orderPay2order(obj){
+		return myPost({
+			url: urls.orderPay2order,
+			params: {
+				...obj
+			},
+		})
+	},
+	indexCategory(){
+		return myPost({
+			url: urls.indexCategory,
+		})
+	},
+	orderIndex(obj){
+		return myPost({
+			url: urls.orderIndex,
+			params: {
+				...obj
+			},
+		})
+	},
+	orderCancel_order(order_id){
+		return myPost({
+			url: urls.orderCancel_order,
+			params: {
+				order_id
+			},
+		})
+	},
+	orderConfirm_deliver(order_id){
+		return myPost({
+			url: urls.orderConfirm_deliver,
+			params: {
+				order_id
+			},
+		})
+	},
+	userAdd_commit(obj){
+		return myPost({
+			url: urls.userAdd_commit,
+			params: {
+				...obj
+			},
+		})
+	},
+	userChange_favor(product_id){
+		return myPost({
+			url: urls.userChange_favor,
+			params: {
+				product_id
+			},
+		})
+	},
+	userCheck_favor(product_id){
+		return myPost({
+			url: urls.userCheck_favor,
+			params: {
+				product_id
+			},
+		})
+	},
+	userShare(obj){
+		return myPost({
+			url: urls.userShare,
+			params: {
+				...obj
+			},
+		})
+	},
+	orderBuy_now(obj){
+		return myPost({
+			url: urls.orderBuy_now,
+			params: {
+				...obj
+			},
+		})
+	},
+	orderBuy_again(order_id){
+		return myPost({
+			url: urls.orderBuy_again,
+			params: {
+				order_id
+			},
+		})
+	},
+	balanceWithdraw(obj){
+		return myPost({
+			url: urls.balanceWithdraw,
+			params: {
+				...obj
+			},
+		})
+	},
+	indexWeb_config(){
+		return myPost({
+			url: urls.indexWeb_config,
+		})
+	},
+	userId_card_orc(obj){
+		return myPost({
+			url: urls.userId_card_orc,
 			data: {
 				...obj
 			},
 		})
 	},
-	wx_search() {
+	userAdd_bank_card(obj){
 		return myPost({
-			url: urls.wx_search,
-		})
-	},
-	wx_cartlist(openid) {
-		return myPost({
-			url: urls.wx_cartlist,
-			data: {
-				openid
+			url: urls.userAdd_bank_card,
+			params: {
+				...obj
 			},
 		})
 	},
-	wx_editcartnum(openid, cartid, num, cal_type, sign) {
+	indexSearch_history(){
 		return myPost({
-			url: urls.wx_editcartnum,
-			data: {
-				openid,
-				cartid,
-				num,
-				cal_type,
-				sign
+			url: urls.indexSearch_history,
+		})
+	},
+	indexRandom_product(){
+		return myPost({
+			url: urls.indexRandom_product,
+		})
+	},
+	userAdd_bank_card(obj){
+		return myPost({
+			url: urls.userAdd_bank_card,
+			params: {
+				...obj
 			},
 		})
 	},
-	wx_addcart(openid, color, size, goods_id, num, sign) {
+	userShare(obj){
 		return myPost({
-			url: urls.wx_addcart,
-			data: {
-				openid,
-				color,
-				size,
-				goods_id,
-				num,
-				sign
+			url: urls.userShare,
+			params: {
+				...obj
 			},
 		})
 	},
-	wx_cartdel(openid, cartid, sign) {
+	userMy_team(){
 		return myPost({
-			url: urls.wx_cartdel,
-			data: {
-				openid,
-				cartid,
-				sign
+			url: urls.userMy_team,
+		})
+	},
+	addressDel(address_id){
+		return myPost({
+			url: urls.addressDel,
+			params: {
+				address_id
 			},
 		})
 	},
-	wx_goodslike(openid) {
+	cartDel_all_cart(){
 		return myPost({
-			url: urls.wx_goodslike,
-			data: {
-				openid,
-			},
+			url: urls.cartDel_all_cart,
 		})
 	},
-	billagreement_view() {
+	indexMedical_article(){
 		return myPost({
-			url: urls.billagreement_view,
+			url: urls.indexMedical_article,
 		})
 	},
-	wx_userreceiver(openid) {
+	userLevel_article(){
 		return myPost({
-			url: urls.wx_userreceiver,
-			data: {
-				openid,
-			},
-		})
-	},
-	wx_adduserreceiver(openid, realname, mobile, city, address, is_default, sign) {
-		return myPost({
-			url: urls.wx_adduserreceiver,
-			data: {
-				openid,
-				realname,
-				mobile,
-				city,
-				address,
-				is_default,
-				sign
-			},
-		})
-	},
-	wx_edituserreceiver(openid, id, realname, mobile, city, address, is_default, sign) {
-		return myPost({
-			url: urls.wx_edituserreceiver,
-			data: {
-				openid,
-				id,
-				realname,
-				mobile,
-				city,
-				address,
-				is_default,
-				sign
-			},
-		})
-	},
-	wx_deluserreceiver(openid, id, sign) {
-		return myPost({
-			url: urls.wx_deluserreceiver,
-			data: {
-				openid,
-				id,
-				sign
-			},
-		})
-	},
-	order_submission(openid, order_type, buy_type, goods_id, color, size, num, sign) {
-		return myPost({
-			url: urls.order_submission,
-			data: {
-				openid,
-				order_type,
-				buy_type,
-				goods_id,
-				color,
-				size,
-				num,
-				sign
-			},
-		})
-	},
-	wx_payment(openid, order_type, buy_type, goods_json, address_id, pay_money, goods_money, totalpostage, pay_type,
-		sign, recommend_userid) {
-		return myPost({
-			url: urls.wx_payment,
-			data: {
-				openid,
-				order_type,
-				buy_type,
-				goods_json,
-				address_id,
-				pay_money,
-				goods_money,
-				totalpostage,
-				pay_type,
-				sign,
-				recommend_userid
-			},
-		})
-	},
-	wx_userorder(openid, is_free, page, pagesize, orders_status) {
-		return myPost({
-			url: urls.wx_userorder,
-			data: {
-				openid,
-				is_free,
-				page,
-				pagesize,
-				orders_status
-			},
-		})
-	},
-	wx_orderspay(openid, order_id, pay_type, sign) {
-		return myPost({
-			url: urls.wx_orderspay,
-			data: {
-				openid,
-				order_id,
-				pay_type,
-				sign
-			},
-		})
-	},
-	wx_orderscancel(openid, order_id, sign) {
-		return myPost({
-			url: urls.wx_orderscancel,
-			data: {
-				openid,
-				order_id,
-				sign
-			},
-		})
-	},
-	wx_orderspostsaleview(openid, order_id) {
-		return myPost({
-			url: urls.wx_orderspostsaleview,
-			data: {
-				openid,
-				order_id,
-			},
-		})
-	},
-	wx_orderspostsale(openid, order_id, postsale_types, postsale_refundmoney, postsale_remark, sign) {
-		return myPost({
-			url: urls.wx_orderspostsale,
-			data: {
-				openid,
-				order_id,
-				postsale_types,
-				postsale_refundmoney,
-				postsale_remark,
-				sign
-			},
-		})
-	},
-	wx_orderspostsalecancel(openid, order_id, sign) {
-		return myPost({
-			url: urls.wx_orderspostsalecancel,
-			data: {
-				openid,
-				order_id,
-				sign
-			},
-		})
-	},
-	wx_orderspostsalesubview(openid, order_id) {
-		return myPost({
-			url: urls.wx_orderspostsalesubview,
-			data: {
-				openid,
-				order_id,
-			},
-		})
-	},
-	wx_orderscomment(openid, order_id, comment, sign) {
-		return myPost({
-			url: urls.wx_orderscomment,
-			data: {
-				openid,
-				order_id,
-				comment,
-				sign
-			},
-		})
-	},
-	wx_orderconfirmreceipt(openid, order_id, sign) {
-		return myPost({
-			url: urls.wx_orderconfirmreceipt,
-			data: {
-				openid,
-				order_id,
-				sign
-			},
-		})
-	},
-	wx_goodscomment(goods_id) {
-		return myPost({
-			url: urls.wx_goodscomment,
-			data: {
-				goods_id
-			},
-		})
-	},
-	guide_content() {
-		return myPost({
-			url: urls.guide_content,
-		})
-	},
-	wx_freeordersubmit(openid, sub_orderid) {
-		return myPost({
-			url: urls.wx_freeordersubmit,
-			data: {
-				openid,
-				sub_orderid
-			},
-		})
-	},
-	wx_freeorder(openid, sub_orderid) {
-		return myPost({
-			url: urls.wx_freeorder,
-			data: {
-				openid,
-				sub_orderid
-			},
-		})
-	},
-	wx_freeorderrecord(openid, page, pagesize) {
-		return myPost({
-			url: urls.wx_freeorderrecord,
-			data: {
-				openid,
-				page,
-				pagesize
-			},
-		})
-	},
-	wx_shareqr(openid, goods_id, sign) {
-		return myPost({
-			url: urls.wx_shareqr,
-			data: {
-				openid,
-				goods_id,
-				sign
-			},
-		})
-	},
-	wx_usercommission(openid, page, pagesize) {
-		return myPost({
-			url: urls.wx_usercommission,
-			data: {
-				openid,
-				page,
-				pagesize
-			},
-		})
-	},
-	wx_usercommissionmore(openid, page, pagesize) {
-		return myPost({
-			url: urls.wx_usercommissionmore,
-			data: {
-				openid,
-				page,
-				pagesize
-			},
-		})
-	},
-	wx_userconsume(openid, page, pagesize) {
-		return myPost({
-			url: urls.wx_userconsume,
-			data: {
-				openid,
-				page,
-				pagesize
-			},
-		})
-	},
-	wx_addcollect(openid, goods_id, sign) {
-		return myPost({
-			url: urls.wx_addcollect,
-			data: {
-				openid,
-				goods_id,
-				sign
-			},
-		})
-	},
-	wx_mycollectdel(openid, goods_id, sign) {
-		return myPost({
-			url: urls.wx_mycollectdel,
-			data: {
-				openid,
-				goods_id,
-				sign
-			},
-		})
-	},
-	wx_withdrawal(openid, withdrawal_type, realname, account, bankname, money, sign) {
-		return myPost({
-			url: urls.wx_withdrawal,
-			data: {
-				openid,
-				withdrawal_type,
-				realname,
-				account,
-				bankname,
-				money,
-				sign
-			},
-		})
-	},
-	wx_mywithdrawal(openid, page, pagesize) {
-		return myPost({
-			url: urls.wx_mywithdrawal,
-			data: {
-				openid,
-				page,
-				pagesize
-			},
-		})
-	},
-	wx_mycollect(openid, page, pagesize) {
-		return myPost({
-			url: urls.wx_mycollect,
-			data: {
-				openid,
-				page,
-				pagesize
-			},
+			url: urls.userLevel_article,
 		})
 	},
 }

@@ -1,46 +1,42 @@
 export default {
-    baseUrl: 'http://192.168.1.5/shop/admin',
-    login: '/login', //登录
-    logincheck: '/logincheck', //后台登录状态检测
-    wx_login:'/wx_login',//小程序端微信登录
-	wx_userinfo:'/wx_userinfo',//小程序端用户信息
-	wx_index:'/wx_index',//小程序端首页
-	wx_goodsview:'/wx_goodsview',//小程序端商品详情
-	wx_goodslist:'/wx_goodslist',//小程序端商品列表
-	wx_search:'/wx_search',//小程序端商品分类筛选
-	wx_cartlist:'/wx_cartlist',//小程序端购物车列表
-	wx_editcartnum:'/wx_editcartnum',//小程序端购物车商品数量修改
-	wx_addcart:'/wx_addcart',//小程序端添加购物车
-	wx_cartdel:'/wx_cartdel',//小程序端购物车商品删除
-	wx_goodslike:'/wx_goodslike',//小程序端购物车猜你喜欢
-	billagreement_view:'/billagreement_view',//后台免单购物协议查看
-	wx_userreceiver:'/wx_userreceiver',//小程序端收货人信息列表
-	wx_adduserreceiver:'/wx_adduserreceiver',//小程序端收货人信息添加
-	wx_edituserreceiver:'/wx_edituserreceiver',//小程序端收货人信息修改
-	wx_deluserreceiver:'/wx_deluserreceiver',//小程序端删除收货人信息
-	order_submission:'/order_submission',//小程序端结算页面展示
-	wx_payment:'/wx_payment',//小程序端支付
-	wx_userorder:'/wx_userorder',//小程序端订单列表
-	wx_orderspay:'/wx_orderspay',//小程序端待支付中的支付
-	wx_orderscancel:'/wx_orderscancel',//小程序端待支付中的取消订单
-	wx_orderspostsaleview:'/wx_orderspostsaleview',//小程序端订单售后详情
-	wx_orderspostsale:'/wx_orderspostsale',//小程序端订单售后提交
-	wx_orderspostsalecancel:'/wx_orderspostsalecancel',//小程序端订单申请售后取消
-	wx_orderspostsalesubview:'/wx_orderspostsalesubview',
-	wx_orderscomment:'/wx_orderscomment',//小程序端订单评价
-	wx_orderconfirmreceipt:'/wx_orderconfirmreceipt',//小程序端订单收货
-	wx_goodscomment:'/wx_goodscomment',//小程序端商品评价列表
-	guide_content:'/guide_content',//新手指南查看
-	wx_freeordersubmit:'/wx_freeordersubmit',//小程序端免单是否达标
-	wx_freeorder:'/wx_freeorder',//小程序端免单中奖页面
-	wx_freeorderrecord:'/wx_freeorderrecord',//小程序端免单记录
-	wx_shareqr:'/wx_shareqr',//小程序端商品详情分享
-	wx_usercommission:'/wx_usercommission',//小程序端邀请好友记录
-	wx_usercommissionmore:'/wx_usercommissionmore',//小程序端佣金记录
-	wx_userconsume:'/wx_userconsume',//小程序端消费记录
-	wx_addcollect:'/wx_addcollect',//小程序端我要收藏
-	wx_mycollectdel:'/wx_mycollectdel',//小程序端取消收藏
-	wx_withdrawal:'/wx_withdrawal',//小程序端提现提交
-	wx_mywithdrawal:'/wx_mywithdrawal',//小程序端提现列表
-	wx_mycollect:'/wx_mycollect',//小程序端我的收藏
+    // baseUrl: 'http://192.168.1.128:8094',
+	// baseUrl:'https://hii7mo3m.dnat.tech',
+	baseUrl:'https://fenxiao.5laoye.com',
+    login: '/api/auth/mini_login', //登录
+    userInfo:'/api/user/info',//用户信息
+	addressIndex:'/api/address/index',//收货地址列表
+	addressAdd:'/api/address/add',//添加收货地址
+	addressEdit:'/api/address/edit',//修改收货地址
+	indexBanner:'/api/index/banner',//首页轮播图
+	indexProduct_list:'/api/index/product_list',//商品列表
+	indexProduct_detail:'/api/index/product_detail',//商品详情页
+	indexCommit_list:'/api/index/commit_list',//商品评价列表
+	cartAdd2cart:'/api/cart/add2cart',//添加到购物车
+	cartIndex:'/api/cart/index',//购物车列表
+	cartChange_cart_num:'/api/cart/change_cart_num',//修改购物车数量
+	del_cart_product:'/api/cart/del_cart_product',//删除购物车商品
+	orderPost_order:'/api/order/post_order',//提交订单
+	orderPay2order:'/api/order/pay2order',//付款
+	indexCategory:'/api/index/category',//日常商品批发分类
+	orderIndex:'/api/order/index',//订单列表
+	orderCancel_order:'/api/order/cancel_order',//取消订单
+	orderConfirm_deliver:'/api/order/confirm_deliver',//确认收货
+	userAdd_commit:'/api/user/add_commit',//商品评论
+	userChange_favor:'/api/user/change_favor',//收藏商品
+	userCheck_favor:'/api/user/check_favor',//是否收藏某商品
+	orderBuy_now:'/api/order/buy_now',//立即购买
+	orderBuy_again:'/api/order/buy_again',//再买一单
+	balanceWithdraw:'/api/balance/withdraw',//提现
+	indexWeb_config:'/api/index/web_config',//网站配置信息
+	userId_card_orc:'/api/user/id_card_orc',//身份证验证
+	userAdd_bank_card:'/api/user/add_bank_card',//添加银行卡
+	indexSearch_history:'/api/index/search_history',//热搜词
+	indexRandom_product:'/api/index/random_product',//猜你喜欢
+	userAdd_bank_card:'/api/user/add_bank_card',//添加银行卡
+	userShare:'/api/user/share',//
+	userMy_team:'/api/user/my_team',//我的团队
+	addressDel:'/api/address/del',//删除收货地址
+	cartDel_all_cart:'/api/cart/del_all_cart',//清空购物车
+	indexMedical_article:'/api/index/medical_article',//医疗说明
+	userLevel_article:'/api/user/level_article',//医疗说明
 }

@@ -17,6 +17,30 @@
           "pathName": "pages/shangpinxiangqin/shangpinxiangqin",
           "query": "id=19&scene=17_6",
           "scene": null
+        },
+        {
+          "name": "pages/index/shangpinxiangqin/shangpinxiangqin",
+          "pathName": "pages/index/shangpinxiangqin/shangpinxiangqin",
+          "query": "scene=2_ohQ5k671SEahXSZY0VDHRA==",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "scene=2_ohQ5k671SEahXSZY0VDHRA==",
+          "scene": null
+        },
+        {
+          "name": "pages/wode/fenxiang/fenxiang",
+          "pathName": "pages/wode/fenxiang/fenxiang",
+          "query": "scene=2_ohQ5k671SEahXSZY0VDHRA==",
+          "scene": null
+        },
+        {
+          "name": "pages/wode/shouhuodizhi/shouhuodizhi",
+          "pathName": "pages/wode/shouhuodizhi/shouhuodizhi",
+          "query": "",
+          "scene": null
         }
       ]
     }
